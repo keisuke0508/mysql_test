@@ -1,0 +1,11 @@
+{% extends "/components/layout.html" %}
+
+{% block main_container_block %}
+
+<ul style="list-style: none;">
+  {% for monster in monsters %}
+  <li>{{ monster.id }}: {{ monster.name }}</li>
+  {% endfor %}
+</ul>
+
+{% endblock %}
