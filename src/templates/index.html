@@ -2,7 +2,7 @@
 
 {% block main_container_block %}
 
-<ul style="list-style: none;">
+<ul class="monsters">
   {% for monster in monsters %}
   <li>{{ monster.id }}: {{ monster.name }}</li>
   {% endfor %}
