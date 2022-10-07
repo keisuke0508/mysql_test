@@ -5,6 +5,10 @@ body {
   margin: 20px 20px;
 }
 
+button {
+  cursor: pointer;
+}
+
 .monster_form {
   height: 30px;
   margin-bottom: 15px;
@@ -33,5 +37,13 @@ body {
   width: 150px;
 }
 .monsters .monster .edit_monster_button {
+  margin-right: 5px;
+}
+
+.pager {
+  display: flex;
+  align-items: center;
+}
+.pager form {
   margin-right: 5px;
 }

@@ -46,8 +46,9 @@ class MySQLConnector:
       self.cursor.execute(sql)
       self.conn.commit()
     
-  def get_monsters(self):
-    sql = 'SELECT * FROM monsters ORDER BY id ASC'
+  def get_monsters(self, count=10, offset=10):
+    print(count, offset)
+    sql = 'SELECT * FROM monsters ORDER BY id ASC LIMIT {count} OFFSET {offset}'.format(count=count, offset=offset)
     return self.get(sql)
 
   def set_monster(self, _id, name):

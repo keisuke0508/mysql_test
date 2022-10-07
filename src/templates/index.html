@@ -27,13 +27,27 @@
     </li>
     {% endfor %}
   </ul>
+
+  <div class="pager">
+    {% if offset >= count %}
+    <form action="{{ url_for('index') }}">
+      <input type="hidden" name="offset" value="{{ offset - 10 }}" />
+      <button>前へ</button>
+    </form>
+    {% endif %}
+    {% if monsters|length >= count %}
+    <form action="{{ url_for('index') }}">
+      <input type="hidden" name="offset" value="{{ offset + 10 }}" />
+      <button>次へ</button>
+    </form>
+    {% endif %}
+  </div>
 </div>
 
 <script type="text/javascript">
 
   function will_update_monster(e) {
     const monster_id = e.target.dataset.id;
-    console.log(monster_id)
     document.getElementById('update_monster_id').value = monster_id;
   }
 

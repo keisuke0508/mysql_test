@@ -7,7 +7,13 @@ mySQLConnector = MySQLConnector('root', 'cbr600rr', 'localhost', 3306, 'POKEMON'
 
 @app.route('/')
 def index():
-  rows = mySQLConnector.get_monsters()
+  count = 10
+  offset = request.args.get('offset')
+  if offset:
+    offset = int(offset)
+  else:
+    offset = 0
+  rows = mySQLConnector.get_monsters(count=count, offset=offset)
   monsters = []
   for row in rows:
     monster = { 'id': row[0], 'name': row[1] }
@@ -16,6 +22,8 @@ def index():
   return render_template(
     'index.html',
     monsters=monsters,
+    count=count,
+    offset=offset,
   )
 
 @app.route('/new_monster')
