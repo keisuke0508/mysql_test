@@ -2,10 +2,48 @@
 
 {% block main_container_block %}
 
-<ul class="monsters">
-  {% for monster in monsters %}
-  <li>{{ monster.id }}: {{ monster.name }}</li>
-  {% endfor %}
-</ul>
+<div>
+  <form action="{{ url_for('new_monster') }}" class="monster_form">
+    id: <input type="text" name="id" />
+    name: <input type="text" name="name" />
+    <button type="submit">追加</button>
+  </form>
+
+  <form action="{{ url_for('update_monster') }}" class="monster_form">
+    id: <input type="text" name="id" id="update_monster_id" readonly />
+    name: <input type="text" name="name" />
+    <button type="submit">編集</button>
+  </form>
+
+  <ul class="monsters">
+    {% for monster in monsters %}
+    <li class="monster">
+      <div class="monster_name">{{ monster.id }}: {{ monster.name }}</div>
+      <button type="button" class="edit_monster_button" data-id="{{ monster.id }}">編集</button>
+      <form action="{{ url_for('delete_monster') }}" class="delete_monster_form">
+        <input type="hidden" name="id" value="{{ monster.id }}">
+        <button type="submit">削除</button>
+      </form>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<script type="text/javascript">
+
+  function will_update_monster(e) {
+    const monster_id = e.target.dataset.id;
+    console.log(monster_id)
+    document.getElementById('update_monster_id').value = monster_id;
+  }
+
+  (function() {
+    const elements = document.getElementsByClassName('edit_monster_button');
+    for (let i = 0; i < elements.length; i++) {
+      elements[i].addEventListener('click', will_update_monster);
+    }
+  })();
+
+</script>
 
 {% endblock %}

@@ -35,12 +35,32 @@ class MySQLConnector:
     if self.cursor is not None:
       self.cursor.executemany(sql, data)
       self.conn.commit()
+  
+  def udpate(self, sql, data):
+    if self.cursor is not None:
+      self.cursor.executemany(sql, data)
+      self.conn.commit()
+  
+  def delete(self, sql):
+    if self.cursor is not None:
+      self.cursor.execute(sql)
+      self.conn.commit()
     
   def get_monsters(self):
     sql = 'SELECT * FROM monsters ORDER BY id ASC'
     return self.get(sql)
 
-  def set_monster(self, data):
+  def set_monster(self, _id, name):
     sql = 'INSERT INTO monsters (id, name) VALUES (%s, %s)'
+    data = [(_id, name)]
     self.set(sql, data)
+  
+  def update_monster(self, _id, name):
+    sql = 'UPDATE monsters set name=%s WHERE id=%s'
+    data = [(name, _id)]
+    self.udpate(sql, data)
+
+  def delete_monster(self, _id):
+    sql = 'DELETE FROM monsters WHERE id = {id}'.format(id=_id)
+    self.delete(sql)
     

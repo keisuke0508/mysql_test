@@ -5,7 +5,33 @@ body {
   margin: 20px 20px;
 }
 
+.monster_form {
+  height: 30px;
+  margin-bottom: 15px;
+}
+.monster_form input {
+  height: 100%;
+  border: 1px solid #000;
+  border-radius: 5px;
+  margin-right: 10px;
+  padding: 0 5px;
+}
+.monster_form button {
+  height: 100%;
+}
+
 .monsters {
   list-style: none;
   padding: 0 0;
+}
+.monsters .monster {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.monsters .monster .monster_name {
+  width: 150px;
+}
+.monsters .monster .edit_monster_button {
+  margin-right: 5px;
 }

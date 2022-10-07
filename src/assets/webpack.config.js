@@ -7,7 +7,7 @@ module.exports = {
   watch: true,
   entry: './scss/style.scss',
   output: {
-    path: path.join(__dirname, '../dist'),
+    path: path.join(__dirname, '../static'),
     filename: 'index.js',
   },
   module: {
@@ -29,8 +29,8 @@ module.exports = {
   ],
   optimization: {
     minimizer: [
-      new CssMinimizerPlugin()
-    ]
+      new CssMinimizerPlugin(),
+    ],
   },
   target: ["web", "es5"],
 };
